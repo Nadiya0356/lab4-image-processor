@@ -7,14 +7,12 @@ import (
 )
 
 func main() {
-	// Ініціалізація логера
 	logger := log.With().Str("service", "image-processor").Logger()
 
 	logger.Info().Msg("Service started")
 
 	processedCount := 0
 
-	// Імітація обробки зображень
 	for i := 0; i < 3; i++ {
 		logger.Info().Msg("Processing image")
 
