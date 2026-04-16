@@ -14,7 +14,7 @@ func main() {
 	processedCount := 0
 
 	for i := 0; i < 3; i++ {
-		logger.Info().Msg("Processing image")
+		logger.Info().Msg("Processing image MAIN version")
 
 		processedCount++
 
