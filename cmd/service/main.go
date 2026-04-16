@@ -1,23 +1,30 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	"fmt"
 
-	_ "net/http/pprof"
-
-	"lab3-detector/internal/processor"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
-	// 🔹 pprof сервер
-	go func() {
-		log.Println("Pprof server started on :6060")
-		log.Println(http.ListenAndServe("localhost:6060", nil))
-	}()
+	// Ініціалізація логера
+	logger := log.With().Str("service", "image-processor").Logger()
 
-	log.Println("Image Metadata Processor started...")
+	logger.Info().Msg("Service started")
 
-	// 🔹 запуск воркерів
-	processor.RunWorkerPool(5)
+	processedCount := 0
+
+	// Імітація обробки зображень
+	for i := 0; i < 3; i++ {
+		logger.Info().Msg("Processing image")
+
+		processedCount++
+
+		logger.Info().
+			Int("processed_images", processedCount).
+			Msg("Images processed")
+	}
+
+	fmt.Println("Done")
 }
