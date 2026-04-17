@@ -17,7 +17,7 @@ func RunWorkerPool(count int) {
 		go func(id int) {
 			for {
 				processImage(id)
-				time.Sleep(10 * time.Millisecond)
+				time.Sleep(20 * time.Millisecond)
 			}
 		}(i)
 	}
