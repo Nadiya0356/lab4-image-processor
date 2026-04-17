@@ -63,3 +63,13 @@ func TestProcessImage_Counter(t *testing.T) {
 		t.Errorf("expected 3 processed images, got %d", p.GetProcessedCount())
 	}
 }
+
+func TestGetProcessedCount_InitialZero(t *testing.T) {
+	p, err := NewProcessor()
+	if err != nil {
+		t.Fatalf("failed to create processor: %v", err)
+	}
+	if p.GetProcessedCount() != 0 {
+		t.Errorf("expected initial count 0, got %d", p.GetProcessedCount())
+	}
+}
