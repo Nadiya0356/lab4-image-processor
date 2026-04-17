@@ -76,7 +76,7 @@ func (p *Processor) ProcessImage(path string) error {
 		zap.String("path", path),
 		zap.String("format", metadata.Format),
 		zap.Int64("size_bytes", metadata.Size),
-		zap.Int64("total_processed", count),
+		zap.Int64("processed_total", count),
 	)
 
 	return nil
