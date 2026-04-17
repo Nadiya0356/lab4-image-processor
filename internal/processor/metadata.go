@@ -27,7 +27,7 @@ type Processor struct {
 
 // NewProcessor створює новий екземпляр Processor
 func NewProcessor() (*Processor, error) {
-	logger, err := zap.NewDevelopment()
+	logger, err := zap.NewProduction()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create logger: %w", err)
 	}
