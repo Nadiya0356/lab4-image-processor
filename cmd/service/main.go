@@ -1,22 +1,31 @@
 package main
 
 import (
-	"log"
-	"net/http"
-	_ "net/http/pprof"
-
+	"fmt"
 	"lab3-detector/internal/processor"
 )
 
 func main() {
-	// pprof сервер
-	go func() {
-		log.Println("Pprof server started on :6060")
-		log.Println(http.ListenAndServe("localhost:6060", nil))
-	}()
+	p, err := processor.NewProcessor()
+	if err != nil {
+		fmt.Printf("Failed to initialize processor: %v\n", err)
+		return
+	}
+	defer p.Shutdown()
 
-	log.Println("Image Metadata Processor started...")
+	// Тестова обробка зображень
+	images := []string{
+		"photo1.jpg",
+		"photo2.png",
+		"document.pdf", // невалідний — буде попередження
+		"photo3.webp",
+	}
 
-	// запуск воркерів
-	processor.RunWorkerPool(5)
+	for _, img := range images {
+		if err := p.ProcessImage(img); err != nil {
+			fmt.Printf("Error processing %s: %v\n", img, err)
+		}
+	}
+
+	fmt.Printf("\nTotal processed: %d images\n", p.GetProcessedCount())
 }
