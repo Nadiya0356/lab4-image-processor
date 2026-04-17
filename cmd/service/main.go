@@ -22,7 +22,7 @@ func main() {
 	}
 
 	for _, img := range images {
-		if err := p.processImage(img); err != nil {
+		if err := p.ProcessImage(img); err != nil {
 			fmt.Printf("Error processing %s: %v\n", img, err)
 		}
 	}

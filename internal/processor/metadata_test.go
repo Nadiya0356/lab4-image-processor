@@ -20,7 +20,7 @@ func TestProcessImage_ValidFile(t *testing.T) {
 		t.Fatalf("failed to create processor: %v", err)
 	}
 
-	err = p.processImage("photo.jpg")
+	err = p.ProcessImage("photo.jpg")
 	if err != nil {
 		t.Errorf("expected no error for valid file, got: %v", err)
 	}
@@ -37,7 +37,7 @@ func TestProcessImage_InvalidFormat(t *testing.T) {
 		t.Fatalf("failed to create processor: %v", err)
 	}
 
-	err = p.processImage("document.pdf")
+	err = p.ProcessImage("document.pdf")
 	if err == nil {
 		t.Error("expected error for unsupported format, got nil")
 	}
@@ -56,7 +56,7 @@ func TestProcessImage_Counter(t *testing.T) {
 
 	files := []string{"img1.jpg", "img2.png", "img3.webp"}
 	for _, f := range files {
-		p.processImage(f)
+		p.ProcessImage(f)
 	}
 
 	if p.GetProcessedCount() != 3 {

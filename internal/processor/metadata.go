@@ -47,7 +47,7 @@ func NewProcessor() (*Processor, error) {
 }
 
 // processImage обробляє одне зображення та логує результат
-func (p *Processor) processImage(path string) error {
+func (p *Processor) ProcessImage(path string) error {
 	// Перевірка формату файлу
 	if !p.formatRegex.MatchString(path) {
 		p.logger.Warn("unsupported file format",
